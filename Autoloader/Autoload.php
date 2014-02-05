@@ -2,7 +2,9 @@
 
 namespace Autoloader;
 
-require_once( __DIR__ . "/AutoloadException.php" );
+use Autoloader\Exception\AutoloadException;
+
+require_once( __DIR__ . "/Exception/AutoloadException.php" );
 
 
 class Autoload {

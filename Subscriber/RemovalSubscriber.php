@@ -2,17 +2,15 @@
 
 namespace Subscriber;
 
-use Notification\RemovalNotification;
-
 interface RemovalSubscriber {
     const INTERFACE_Subscriber = __CLASS__;
 
 
     /**
-     * @param RemovalNotification $removal
+     * @param SubscriptionItem $item
      *
      * @return bool
      */
-    public function update( RemovalNotification $removal );
+    public function update( SubscriptionItem $item );
 }
  

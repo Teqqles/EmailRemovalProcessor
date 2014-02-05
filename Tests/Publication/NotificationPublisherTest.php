@@ -1,8 +1,11 @@
 <?php
 
+
 namespace Tests\Publication;
 
 
+use Notification\SNS\SimpleRemovalNotification;
+use Phockito;
 use Publication\NotificationPublisher;
 use Subscriber\NullRemovalSubscriber;
 
@@ -42,8 +45,22 @@ class NotificationPublisherTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function test_updateSubscribers() {
-        $this->fail( "not implemented" );
+    public function test_notifySubscribers() {
+        $publisher    = new NotificationPublisher();
+        $notification = new SimpleRemovalNotification();
+        $subscriber   = Phockito::mock( NullRemovalSubscriber::CLASS_NAME );
+        $subscriber2  = Phockito::mock( NullRemovalSubscriber::CLASS_NAME );
+
+        $publisher->attach( $subscriber );
+        $publisher->attach( $subscriber2 );
+        $publisher->notifySubscribers( $notification );
+
+        Phockito::verify( $subscriber )
+                ->update( $notification );
+
+        Phockito::verify( $subscriber2 )
+                ->update( $notification );
+
     }
 }
  

@@ -3,21 +3,21 @@
 namespace Notification;
 
 
-use Notification\Exception\NotANotificationException;
+use Notification\Exception\NotANotificationServerException;
 
-class NotificationList extends \ArrayObject {
+class NotificationServerList extends \ArrayObject {
     const CLASS_NAME = __CLASS__;
 
 
     /**
-     * @param mixed               $index
-     * @param RemovalNotification $value
+     * @param mixed              $index
+     * @param NotificationServer $value
      *
-     * @throws NotANotificationException
+     * @throws NotANotificationServerException
      */
     public function offsetSet( $index, $value ) {
         if ( !$value instanceof RemovalNotification ) {
-            throw new NotANotificationException();
+            throw new NotANotificationServerException();
         }
         parent::offsetSet( $index, $value );
     }
@@ -26,7 +26,7 @@ class NotificationList extends \ArrayObject {
     /**
      * @param mixed $index
      *
-     * @return RemovalNotification
+     * @return NotificationServer
      */
     public function offsetGet( $index ) {
         return parent::offsetGet( $index );

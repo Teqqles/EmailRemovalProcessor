@@ -3,18 +3,16 @@
 namespace Subscriber;
 
 
-use Notification\RemovalNotification;
-
 class NullRemovalSubscriber implements RemovalSubscriber {
     const CLASS_NAME = __CLASS__;
 
 
     /**
-     * @param RemovalNotification $removal
+     * @param SubscriptionItem $item
      *
      * @return bool
      */
-    public function update( RemovalNotification $removal ) {
+    public function update( SubscriptionItem $item ) {
         return true;
     }
 }

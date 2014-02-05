@@ -3,6 +3,7 @@
 namespace Publication;
 
 use Subscriber\RemovalSubscriber;
+use Subscriber\SubscriptionItem;
 
 interface Publisher {
     const INTERFACE_Publisher = __CLASS__;
@@ -24,6 +25,11 @@ interface Publisher {
     public function detach( RemovalSubscriber $subscriber );
 
 
-    public function updateSubscribers();
+    /**
+     * @param SubscriptionItem $item
+     */
+    public function notifySubscribers( SubscriptionItem $item );
+
+
 }
  

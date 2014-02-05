@@ -1,0 +1,14 @@
+{
+    "methodCalls": [
+        {
+            "class": "\\Phockito",
+            "method": "mock",
+            "position": 0
+        },
+        {
+            "class": "\\Phockito",
+            "method": "verify",
+            "position": 0
+        }
+    ]
+}

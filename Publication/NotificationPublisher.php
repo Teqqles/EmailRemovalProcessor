@@ -5,6 +5,7 @@ namespace Publication;
 
 use Subscriber\RemovalSubscriber;
 use Subscriber\RemovalSubscriberList;
+use Subscriber\SubscriptionItem;
 
 class NotificationPublisher implements Publisher {
     const CLASS_NAME = __CLASS__;
@@ -80,8 +81,19 @@ class NotificationPublisher implements Publisher {
     }
 
 
-    public function updateSubscribers() {
+    /**
+     * @param SubscriptionItem $item
+     *
+     * @throws \Exception
+     */
+    public function notifySubscribers( SubscriptionItem $item ) {
 
+        /** @var RemovalSubscriber $subscriber */
+        foreach ( $this->subscriberList as $subscriber ) {
+            $subscriber->update( $item );
+        }
     }
+
+
 }
  
