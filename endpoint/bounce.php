@@ -1,7 +1,8 @@
-<?php 
+<?php
+
 	if (!isset($HTTP_RAW_POST_DATA)) $HTTP_RAW_POST_DATA = file_get_contents('php://input');
 	$data = json_decode($HTTP_RAW_POST_DATA);
-	$time = time();
+
 	$bounce_simulator_email = 'bounce@simulator.amazonses.com';
 	
 	//Confirm SNS subscription
@@ -18,7 +19,7 @@
 		$problem_email = $obj->{'bounce'}->{'bouncedRecipients'};
 		$problem_email = $problem_email[0]->{'emailAddress'};
 		$from_email = $obj->{'mail'}->{'source'};
-		$from_email = str_replace(array('"Sendy" <', '>'), '', $from_email);
+        $from_email = preg_replace( '/<[^>]+>/i', '', $from_email );
 		
 		//check if email is valid, if not, exit
 		if(!filter_var($problem_email,FILTER_VALIDATE_EMAIL)) exit;
@@ -64,25 +65,3 @@
 			}
 		}
 	}
-	
-	//--------------------------------------------------------------//
-	function file_get_contents_curl($url) 
-	//--------------------------------------------------------------//
-	{
-		//Get server path
-		$server_path_array = explode('endpoint/bounce.php', $_SERVER['SCRIPT_FILENAME']);
-	    $server_path = $server_path_array[0];
-	    $ca_cert_bundle = $server_path.'certs/cacert.pem';
-	    
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-		curl_setopt($ch, CURLOPT_CAINFO, $ca_cert_bundle);
-		$data = curl_exec($ch);
-		curl_close($ch);
-		return $data;
-	}
-?>

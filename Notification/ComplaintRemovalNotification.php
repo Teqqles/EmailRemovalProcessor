@@ -5,7 +5,7 @@ namespace Notification;
 use Notification\SNS\Message;
 use Subscriber\SubscriptionItem;
 
-class BounceRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
+class ComplaintRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
     const CLASS_NAME = __CLASS__;
 
 
