@@ -8,6 +8,8 @@ use Subscriber\SubscriptionItem;
 class BounceRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
     const CLASS_NAME = __CLASS__;
 
+    const SETUP_EMAIL_ADDRESS = 'bounce@simulator.amazonses.com';
+
 
     public function __construct() {
 

@@ -8,6 +8,8 @@ use Subscriber\SubscriptionItem;
 class ComplaintRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
     const CLASS_NAME = __CLASS__;
 
+    const SETUP_EMAIL_ADDRESS = 'complaint@simulator.amazonses.com';
+
 
     public function __construct() {
 
