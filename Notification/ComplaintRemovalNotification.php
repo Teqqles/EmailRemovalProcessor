@@ -8,11 +8,16 @@ use Subscriber\SubscriptionItem;
 class ComplaintRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
     const CLASS_NAME = __CLASS__;
 
-    const SETUP_EMAIL_ADDRESS = 'complaint@simulator.amazonses.com';
+    /** @var string */
+    private $emailAddress;
+
+    /** @var string */
+    private $removalReason;
 
 
-    public function __construct() {
-
+    public function __construct( $emailAddressToRemove, $removalReason ) {
+        $this->emailAddress  = $emailAddressToRemove;
+        $this->removalReason = $removalReason;
     }
 
 
@@ -20,7 +25,7 @@ class ComplaintRemovalNotification implements RemovalNotification, SubscriptionI
      * @return string
      */
     public function getRemovalSubject() {
-
+        return $this->emailAddress;
     }
 
 
@@ -28,7 +33,7 @@ class ComplaintRemovalNotification implements RemovalNotification, SubscriptionI
      * @return string
      */
     public function getRemovalMessage() {
-
+        return $this->removalReason;
     }
 }
  

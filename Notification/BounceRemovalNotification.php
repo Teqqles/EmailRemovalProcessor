@@ -8,11 +8,16 @@ use Subscriber\SubscriptionItem;
 class BounceRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
     const CLASS_NAME = __CLASS__;
 
-    const SETUP_EMAIL_ADDRESS = 'bounce@simulator.amazonses.com';
+    /** @var string */
+    private $emailToRemove;
+
+    /** @var bool */
+    private $softBounce = false;
 
 
-    public function __construct() {
-
+    public function __construct( $emailToRemove, $bounceType ) {
+        $this->emailToRemove = $emailToRemove;
+        $this->softBounce    = ( $bounceType == 'Transient' );
     }
 
 
@@ -20,7 +25,7 @@ class BounceRemovalNotification implements RemovalNotification, SubscriptionItem
      * @return string
      */
     public function getRemovalSubject() {
-
+        return $this->emailToRemove;
     }
 
 
@@ -28,7 +33,9 @@ class BounceRemovalNotification implements RemovalNotification, SubscriptionItem
      * @return string
      */
     public function getRemovalMessage() {
-
+        return $this->softBounce
+                ? 'Soft'
+                : 'Hard';
     }
 }
  

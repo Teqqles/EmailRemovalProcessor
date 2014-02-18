@@ -29,9 +29,4 @@ if ( !filter_var( $problem_email, FILTER_VALIDATE_EMAIL ) ) {
     exit;
 }
 
-
-if ( $problem_email == $complaint_simulator_email ) {
-    //confirm setup
-}
-
 //Update database of
