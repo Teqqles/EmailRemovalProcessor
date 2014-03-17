@@ -2,11 +2,16 @@
 
 namespace Notification;
 
-use Notification\SNS\Message;
 use Subscriber\SubscriptionItem;
 
 class BounceRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
     const CLASS_NAME = __CLASS__;
+
+    const SNS_RAW_SOFT_BOUNCE_MESSAGE = 'Transient';
+
+    const BOUNCE_HARD = 'hard';
+
+    const BOUNCE_SOFT = 'soft';
 
     /** @var string */
     private $emailToRemove;
@@ -17,7 +22,7 @@ class BounceRemovalNotification implements RemovalNotification, SubscriptionItem
 
     public function __construct( $emailToRemove, $bounceType ) {
         $this->emailToRemove = $emailToRemove;
-        $this->softBounce    = ( $bounceType == 'Transient' );
+        $this->softBounce    = ( $bounceType == self::SNS_RAW_SOFT_BOUNCE_MESSAGE );
     }
 
 
@@ -34,8 +39,8 @@ class BounceRemovalNotification implements RemovalNotification, SubscriptionItem
      */
     public function getRemovalMessage() {
         return $this->softBounce
-                ? 'Soft'
-                : 'Hard';
+                ? self::BOUNCE_SOFT
+                : self::BOUNCE_HARD;
     }
 }
  

@@ -10,6 +10,8 @@ class SnsRequestWrapper {
 
     const SNS_REQUEST_NO_USER_ADDRESS = "No user email address is contained in specified index within SNS Request";
 
+    const SNS_SUBSCRIPTION_CONFIRMATION = 'SubscriptionConfirmation';
+
     private $messageWrapper;
 
     private $message;
@@ -17,7 +19,7 @@ class SnsRequestWrapper {
 
     public function __construct( $rawJson ) {
         $this->messageWrapper = json_decode( $rawJson );
-        $this->message        = json_decode( $this->messageWrapper->Message );
+        $this->message        = $this->messageWrapper->Message;
     }
 
 
@@ -38,13 +40,37 @@ class SnsRequestWrapper {
 
 
     /**
+     * @return int
+     */
+    public function countUserEmailList() {
+        $problemEmailList = $this->retrieveRecipients();
+
+        return count( $problemEmailList );
+    }
+
+
+    /**
+     * @return array
+     */
+    private function retrieveRecipients() {
+        if ( isset( $this->message->{'complaint'}->{'complainedRecipients'} ) ) {
+            return $this->message->{'complaint'}->{'complainedRecipients'};
+        } elseif ( isset( $this->message->{'bounce'}->{'bouncedRecipients'} ) ) {
+            return $this->message->{'bounce'}->{'bouncedRecipients'};
+        }
+
+        return array();
+    }
+
+
+    /**
      * @param int $index
      *
      * @throws SnsRequestException
      * @return string
      */
     public function userEmail( $index = 0 ) {
-        $problemEmailList = $this->message->{'complaint'}->{'complainedRecipients'};
+        $problemEmailList = $this->retrieveRecipients();
 
         $problemEmail = $problemEmailList[ $index ]->{'emailAddress'};
 
@@ -77,6 +103,36 @@ class SnsRequestWrapper {
         $this->checkNullValues( $fromEmail, self::SNS_REQUEST_NO_FROM_ADDRESS );
 
         return preg_replace( '/<[^>]+>/i', '', $fromEmail );
+    }
+
+
+    /**
+     * @return string
+     */
+    public function subscribeUrl() {
+        return $this->messageWrapper->{'SubscribeURL'};
+    }
+
+
+    /**
+     * @return string
+     */
+    public function feedback() {
+        if ( !isset( $this->message->{'complaint'}->{'complaintFeedbackType'} ) ) {
+            return 'no feedback';
+        }
+
+        return $this->message->{'complaint'}->{'complaintFeedbackType'};
+    }
+
+
+    /**
+     * @return string
+     */
+    public function bounceType() {
+        $bounceType = $this->message->{'bounce'}->{'bounceType'};
+
+        return $bounceType;
     }
 
 }

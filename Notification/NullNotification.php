@@ -2,7 +2,6 @@
 
 namespace Notification;
 
-use Notification\SNS\Message;
 use Subscriber\SubscriptionItem;
 
 class NullNotification implements RemovalNotification, SubscriptionItem, Message {

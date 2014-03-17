@@ -2,7 +2,6 @@
 
 namespace Notification;
 
-use Notification\SNS\Message;
 use Subscriber\SubscriptionItem;
 
 class ComplaintRemovalNotification implements RemovalNotification, SubscriptionItem, Message {
@@ -26,6 +25,14 @@ class ComplaintRemovalNotification implements RemovalNotification, SubscriptionI
      */
     public function getRemovalSubject() {
         return $this->emailAddress;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function isEmailValid() {
+        return filter_var( $this->emailAddress, FILTER_VALIDATE_EMAIL );
     }
 
 

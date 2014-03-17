@@ -1,6 +1,6 @@
 <?php
 
-namespace Notification\SNS;
+namespace Notification;
 
 
 interface Message {

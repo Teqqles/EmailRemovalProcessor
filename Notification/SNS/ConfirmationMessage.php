@@ -3,7 +3,10 @@
 namespace Notification\SNS;
 
 
-class ConfirmationMessage implements Message {
+use Notification\Message;
+use Subscriber\SubscriptionItem;
+
+class ConfirmationMessage implements Message, SubscriptionItem {
     const CLASS_NAME = __CLASS__;
 
     /** @var string */

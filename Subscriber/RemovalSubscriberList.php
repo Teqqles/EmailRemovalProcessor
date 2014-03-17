@@ -3,6 +3,8 @@
 namespace Subscriber;
 
 
+use Subscriber\Exception\NotARemovalSubscriberException;
+
 class RemovalSubscriberList extends \ArrayObject {
     const CLASS_NAME = __CLASS__;
 
