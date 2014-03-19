@@ -5,6 +5,7 @@ namespace Notification\SNS;
 use Notification\MessageList;
 use Notification\MessageProcessor;
 use Notification\RemovalProcessor;
+use Subscriber\RemovalSubscriberList;
 
 class SnsMessageListProcessor implements MessageProcessor {
     const CLASS_NAME = __CLASS__;
@@ -17,6 +18,11 @@ class SnsMessageListProcessor implements MessageProcessor {
      */
     private $messageListGenerator;
 
+    /**
+     * @var RemovalSubscriberList
+     */
+    private $removalSubscriberList;
+
 
     /**
      * @param                         $rawPost
@@ -25,6 +31,11 @@ class SnsMessageListProcessor implements MessageProcessor {
     public function __construct( $rawPost, SnsMessageListGenerator $messageListGenerator ) {
         $this->postData             = $rawPost;
         $this->messageListGenerator = $messageListGenerator;
+    }
+
+
+    public function attachSubscriberList( RemovalSubscriberList $removalSubscriber ) {
+        $this->removalSubscriberList = $removalSubscriber;
     }
 
 
@@ -75,6 +86,6 @@ class SnsMessageListProcessor implements MessageProcessor {
             return new ConfirmationProcessor( $messageList );
         }
 
-        return RemovalProcessor::createRemovalProcessor( $messageList );
+        return RemovalProcessor::createRemovalProcessor( $messageList, $this->removalSubscriberList );
     }
 }

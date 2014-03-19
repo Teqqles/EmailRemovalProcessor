@@ -19,7 +19,7 @@ class SnsRequestWrapper {
 
     public function __construct( $rawJson ) {
         $this->messageWrapper = json_decode( $rawJson );
-        $this->message        = $this->messageWrapper->Message;
+        $this->message        = json_decode( $this->messageWrapper->Message );
     }
 
 

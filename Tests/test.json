@@ -1,0 +1,11 @@
+{
+  "Type" : "Notification",
+  "MessageId" : "e65d778e-2270-595c-856d-3c2ca3b0adb5",
+  "TopicArn" : "arn:aws:sns:eu-west-1:676460288307:complaints",
+  "Message" : "{\"notificationType\":\"Complaint\",\"complaint\":{\"userAgent\":\"Amazon SES Mailbox Simulator\",\"complaintFeedbackType\":\"abuse\",\"complainedRecipients\":[{\"emailAddress\":\"complaint@simulator.amazonses.com\"}],\"timestamp\":\"2014-03-18T17:16:47.000Z\",\"feedbackId\":\"00000144d6320cea-16998df8-aec1-11e3-8cbf-35a11abfb2c1-000000\"},\"mail\":{\"timestamp\":\"2014-03-18T17:16:46.000Z\",\"source\":\"no-reply@racing-leagues.co.uk\",\"messageId\":\"00000144d632069f-ec3b4818-38d2-4962-aa73-8daea5dad3cb-000000\",\"destination\":[\"complaint@simulator.amazonses.com\"]}}",
+  "Timestamp" : "2014-03-18T17:16:48.425Z",
+  "SignatureVersion" : "1",
+  "Signature" : "cAd31fWjz7GKvI/EMURY5LO2u178zMqVieChbl0L4E7aqPs62Iuw2oNYoIq4AJ8TuMnRrr7OcEonR07IvJOx4TXl/VGssWqxmjTDfbyGDjAKEmunmoD5+wd3abDjDIe2JYW/38J59+c/Jdn+1UME8cRGyGoZ4qdQm8QfZSwoTZrVWgdlrR9q/OXvMdyQUfO4hj885oSFlyhxauTdhaxoqKkoYd9jx8dYNYJhDaDuC4HdNtyZtcKsCEKlRenTy7+cHowTxDA5z2mYvKnsFamd3Rp8k3YlLS5ZXaS4xpplvbD2v5vJMCwMh33qkKWVPAspV18wc+/G76r7TSJsbS6/Uw==",
+  "SigningCertURL" : "https://sns.eu-west-1.amazonaws.com/SimpleNotificationService-e372f8ca30337fdb084e8ac449342c77.pem",
+  "UnsubscribeURL" : "https://sns.eu-west-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-1:676460288307:complaints:a54055d6-5854-4b15-a9ba-8db7dcc8c2e3"
+}

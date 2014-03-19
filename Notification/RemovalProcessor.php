@@ -36,7 +36,7 @@ class RemovalProcessor implements MessageProcessor {
     /**
      * @param RemovalSubscriberList $subscriberList
      */
-    private function attachSubscriberList( RemovalSubscriberList $subscriberList ) {
+    public function attachSubscriberList( RemovalSubscriberList $subscriberList ) {
         /** @var RemovalSubscriber $subscriber */
         foreach ( $subscriberList as $subscriber ) {
             $this->publisher->attach( $subscriber );
@@ -45,12 +45,14 @@ class RemovalProcessor implements MessageProcessor {
 
 
     /**
-     * @param MessageList $messageList
+     * @param MessageList                       $messageList
+     *
+     * @param \Subscriber\RemovalSubscriberList $subscriberList
      *
      * @return RemovalProcessor
      */
-    public static function createRemovalProcessor( MessageList $messageList ) {
-        return new RemovalProcessor( $messageList, new NotificationPublisher(), new RemovalSubscriberList() );
+    public static function createRemovalProcessor( MessageList $messageList, RemovalSubscriberList $subscriberList ) {
+        return new RemovalProcessor( $messageList, new NotificationPublisher(), $subscriberList );
     }
 
 

@@ -3,34 +3,7 @@
   "MessageId" : "da41e39f-ea4d-435a-b922-c6aae3915ebe",
   "TopicArn" : "arn:aws:sns:us-east-1:123456789012:MyTopic",
   "Subject" : "test",
-  "Message" : {
-                  "notificationType":"Bounce",
-                  "bounce":{
-                     "bounceType":"Transient",
-                     "bounceSubType": "General",
-                     "bouncedRecipients":[
-                        {
-                           "emailAddress":"recipient1@example.com"
-                        },
-                        {
-                           "emailAddress":"recipient2@example.com"
-                        }
-                     ],
-                     "timestamp":"2012-05-25T14:59:38.237-07:00",
-                     "feedbackId":"00000137860315fd-869464a4-8680-4114-98d3-716fe35851f9-000000"
-                  },
-                  "mail":{
-                     "timestamp":"2012-05-25T14:59:38.237-07:00",
-                     "messageId":"00000137860315fd-34208509-5b74-41f3-95c5-22c1edc3c924-000000",
-                     "source":"email_1337983178237@amazon.com",
-                     "destination":[
-                        "recipient1@example.com",
-                        "recipient2@example.com",
-                        "recipient3@example.com",
-                        "recipient4@example.com"
-                     ]
-                  }
-              },
+  "Message" : "{\"notificationType\":\"Bounce\",\"bounce\":{\"bounceSubType\":\"General\",\"bounceType\":\"Transient\",\"bouncedRecipients\":[{\"emailAddress\":\"ooto@simulator.amazonses.com\"}],\"feedbackId\":\"00000144d6302fb0-cdc80be7-aec0-11e3-987f-1168ff8c8cb3-000000\",\"timestamp\":\"2014-03-18T17:14:45.000Z\"},\"mail\":{\"source\":\"no-reply@example.com\",\"messageId\":\"00000144d630272f-bd28ffc9-eadb-4b16-bc21-d913d281f537-000000\",\"destination\":[\"ooto@simulator.amazonses.com\"],\"timestamp\":\"2014-03-18T17:14:43.000Z\"}}",
   "Timestamp" : "2012-04-25T21:49:25.719Z",
   "SignatureVersion" : "1",
   "Signature" : "EXAMPLElDMXvB8r9R83tGoNn0ecwd5UjllzsvSvbItzfaMpN2nk5HVSw7XnOn/49IkxDKz8YrlH2qJXj2iZB0Zo2O71c4qQk1fMUDi3LGpij7RCW7AW9vYYsSqIKRnFS94ilu7NFhUzLiieYr4BKHpdTmdD6c0esKEYBpabxDSc=",
