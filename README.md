@@ -14,17 +14,7 @@ Usage:
 ```php
 <?php
 
-use Publication\NotificationPublisher;
-use Subscriber\NullRemovalSubscriber; //replace with your implementation
-use Notification\BounceRemovalNotification;
-
-$publisher    = new NotificationPublisher();
-$notification = new BounceRemovalNotification();
-$subscriber   = new NullRemovalSubscriber();
-
-$publisher->attach( $subscriber );
-$publisher->notifySubscribers( $notification ); //notifies all subscribers of a bounce
-
+to be updated
 ```
 
 Also see test suite for usage examples
